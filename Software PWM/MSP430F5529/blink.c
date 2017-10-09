@@ -34,7 +34,7 @@ void main(void)
 
 void ledSetup()
 {
-    //selects peripheral mode for both leds
+    //selects gpio mode for both leds
     P1SEL &= ~(BIT0);
     P4SEL &= ~(BIT0);
 
@@ -51,14 +51,14 @@ void ledSetup()
 
 void buttonSetup()
 {
-    //resistor enabled, input 1.3
+    //resistor enabled, 
        P1REN |= BIT1;
 
        //Sets Resistor to pullup, 1.0 is low, has to use = to initialize
        P1OUT = BIT1;
 
 
-       P1IE |=BIT1; //enable interrupt on port 1.3
+       P1IE |=BIT1; //enable interrupt
        P1IES |=BIT1; //sets as falling edge
        P1IFG &=~(BIT1);//clear interrupt flag
 }
@@ -86,7 +86,7 @@ void timerSetup()
 __interrupt void Port_1(void) // function called when the port is interrupted (button pressed)
 {
     if (!((P1IN & BIT1) == BIT1)){
-            P4OUT^=BIT7; //toggle red led
+            P4OUT^=BIT7; //toggle green led
 
             if (TA0CCR1<=1000){
                 TA0CCR1 = TA0CCR1+100; //increments green led duty cycle

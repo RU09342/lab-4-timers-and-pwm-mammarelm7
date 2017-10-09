@@ -33,35 +33,25 @@ void main(void){
     buttonSetup(); //init buttons
     timerSetup(); //init timer
 
+    _BIS_SR(LPM0_bits + GIE);       //Enter low power mode
+
 }
 
-//button interrupt
-#pragma vector=PORT5_VECTOR
-__interrupt void Port_5(void) {
 
-    if (!((P5IN & BIT6) == BIT6)){
-        P1OUT^=BIT1; //toggle red led
-
-        if (TA0CCR1<=1000){
-            TA0CCR1 = TA0CCR1+100; //increments green led duty cycle
-
-        }
-        else {
-            TA0CCR1 = 0; //resets duty cycle back to 0%
-        }
-    }
-
-    //clears interrupt flag to exit interrupt
-    P5IFG &= ~BIT6;
-}
 
 
 void ledSetup(){
 
-    //red led
-    P1DIR |= (BIT0|BIT1);
-    P1SEL0 |= BIT0;
+    //selects gpio mode for both leds
+        P1SEL0 &= ~(BIT0|BIT1);
 
+
+        //red,green led out
+        P1DIR |= (BIT0|BIT1);
+
+
+        //makes sure green led is off
+        P1OUT &= ~(BIT1);
 
 
 
@@ -82,15 +72,57 @@ void buttonSetup(){
 }
 void timerSetup(){
 
-    // PWM period, f=1MHz/1001 = 1khz
-    TA0CCR0 |= 1000;
-    // TA0CCR1 PWM 50% duty cycle
-    TA0CCR1 |= 500;
-    // TA0CCR1 output mode = reset/set
-    TA0CCTL1 |= OUTMOD_7;
     // SMCLK, Up Mode (Counts to TA0CCR0)
-    TA0CTL |= TASSEL_2 + MC_1;
+        TA0CTL |= TASSEL_2 + MC_1;
 
-    _BIS_SR(LPM0_bits + GIE);       //Enter low power mode
+        //sets cctl1 and 0 to compare mode
+        TA0CCTL1 = (CCIE);
+        TA0CCTL0 = (CCIE);
+
+        // PWM period, f=1MHz/1001 = 1khz
+        TA0CCR0 = 1000;
+        // TA0CCR1 PWM 50% duty cycle
+        TA0CCR1 = 500;
+
 
 }
+
+//button interrupt
+#pragma vector=PORT5_VECTOR
+__interrupt void Port_5(void) {
+
+    if (!((P5IN & BIT6) == BIT6)){
+               P1OUT^=BIT1; //toggle green led
+
+               if (TA0CCR1<=1000){
+                   TA0CCR1 = TA0CCR1+100; //increments green led duty cycle
+
+               }
+               else {
+                   TA0CCR1 = 0; //resets duty cycle back to 0%
+               }
+           }
+
+           //clears interrupt flag to exit interrupt
+           P5IFG &= ~BIT6;
+}
+
+
+//Timer A interrupt vectors
+#pragma vector=TIMER0_A1_VECTOR
+__interrupt void Timer0_A1_ISR (void)
+{
+    if(TA0CCR1 != 1000)
+    {
+       P1OUT &= ~(BIT0); //turns off red led
+    }
+    TA0CCTL1 &= ~BIT0; //clears flag
+}
+
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void Timer0_A0_ISR (void)
+{
+    P1OUT |= (BIT0); //turns on red led
+    TA0CCTL0 &= ~BIT0;  //clears flag
+}
+
