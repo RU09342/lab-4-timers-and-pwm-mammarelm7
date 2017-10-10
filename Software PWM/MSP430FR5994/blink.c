@@ -4,7 +4,7 @@ Matt Mammarelli
 ECE 09342-2
 */
 
-//MSP430FR5994 Software Debouncing
+//MSP430FR5994 Software PWM
 //green led toggles when button pressed
 //red led affected by PWM
 //need p1sel0
