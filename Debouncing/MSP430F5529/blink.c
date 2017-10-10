@@ -4,7 +4,7 @@ Matt Mammarelli
 ECE 09342-2
 */
 
-//MSP430F5529 Button Based Delay
+//MSP430F5529 Software Debouncing
 //Timer B used to control the debouncing
 //Timer A used to control speed of red LED
 
