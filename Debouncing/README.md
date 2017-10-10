@@ -5,23 +5,23 @@ One timer will control the debouncing while the other will control the speed of 
 For each of the boards, different timers were used depending on availablity for each board.
 
 ### MSP430F5529
-Debounce: Timer B
+Debounce: Timer B,
 LED Speed: Timer A
 
 ### MSP430FR2311
-Debounce: Timer B1
+Debounce: Timer B1, 
 LED Speed: Timer B
 
 ### MSP430FR5994
-Debounce: Timer B
+Debounce: Timer B,
 LED Speed: Timer A
 
 ### MSP430FR6989
-Debounce: Timer B
+Debounce: Timer B,
 LED Speed: Timer A
 
 ### MSP430G2553
-Debounce: Timer A1
+Debounce: Timer A1,
 LED Speed: Timer A
 
 ## MSP430F5529 
