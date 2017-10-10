@@ -7,28 +7,29 @@ For each of the boards, different timers were used depending on availablity for 
 The use of P1SEL vs P1SEL0 changed depending on the board.
 
 ### MSP430F5529
-Use P1SEL
-TIMER A
+Use P1SEL;
+Use TIMER A;
 Used Explicit Timer ISR
 
 ### MSP430FR2311
-Use P1SEL0
-TIMER B
+Use P1SEL0;
+Use TIMER B;
 Used Explicit Timer ISR
 
 ### MSP430FR5994
-Use P1SEL0
-TIMER A
+Use P1SEL0;
+Use TIMER A;
 Used Explicit Timer ISR
 
 ### MSP430FR6989
-Use P1SEL0
-TIMER A
+Use P1SEL0;
+Use TIMER A;
 Didn't need Explicit Timer ISR
 
 ### MSP430G2553
-USE P1SEL
-Didn't need Explicit Timer ISR
+USE P1SEL;
+Use TIMER A;
+Didn't need Explicit Timer ISR;
 PWM on green led instead of red
 
 ## MSP430F5529 
