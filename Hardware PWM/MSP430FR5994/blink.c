@@ -97,7 +97,7 @@ void timerSetup(){
 __interrupt void Port_5(void) {
 
     if (!((P5IN & BIT6) == BIT6)){
-               P1OUT^=BIT1; //toggle green led
+               P1OUT^=BIT1; //toggle red led
 
                if (TA0CCR1<=1000){
                    TA0CCR1 = TA0CCR1+100; //increments green led duty cycle
