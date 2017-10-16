@@ -1,5 +1,12 @@
 # Lab 4: Software Debouncing
 One timer will control the debouncing while the other will control the speed of the red led.
+When the button is pressed, the button interrupt fires. 
+Then the interrupt flag for the button is disabled to prevent multiple reads.  
+A Timer in Up mode is then created to simulate a delay that will wait a small amount of time so mulitiple button inputs aren't detected.
+When the interrupt for this timer fires, the button flag is enabled and the green led is toggled.
+Then back inside the button interrupt, a variable count checks how many times the button is pressed.
+Depending on the number of presses, the speed of the led will change since the TA0CCR0 register is changed. 
+The TAR register will count up to the TA0CCR0 register since we chose up mode so the higher the TA0CCR0 register, the longer the blink.
 
 ## Code Differences
 For each of the boards, different timers were used depending on availablity for each board.
