@@ -804,52 +804,52 @@ __interrupt void Port_5(void) {
                switch (btnCount){
 
                case 0:   {
-                                  TA0CCR1 = TA0CCR1+30; //increments green led duty cycle
+                                  TA0CCR1 = TA0CCR1+30; //increments red led duty cycle
                                   btnCount++;
                                   break;
                }
                case 1:   {
-                                  TA0CCR1 = TA0CCR1+40; //increments green led duty cycle
+                                  TA0CCR1 = TA0CCR1+40; //increments red led duty cycle
                                   btnCount++;
                                   break;
                }
                case 2:   {
-                                  TA0CCR1 = TA0CCR1+40; //increments green led duty cycle
+                                  TA0CCR1 = TA0CCR1+40; //increments red led duty cycle
                                   btnCount++;
                                   break;
                }
                case 3:   {
-                                  TA0CCR1 = TA0CCR1+40; //increments green led duty cycle
+                                  TA0CCR1 = TA0CCR1+40; //increments red led duty cycle
                                   btnCount++;
                                   break;
                }
                case 4:   {
-                                  TA0CCR1 = TA0CCR1+50; //increments green led duty cycle
+                                  TA0CCR1 = TA0CCR1+50; //increments red led duty cycle
                                   btnCount++;
                                   break;
               }
                case 5:   {
-                                  TA0CCR1 = TA0CCR1+50; //increments green led duty cycle
+                                  TA0CCR1 = TA0CCR1+50; //increments red led duty cycle
                                   btnCount++;
                                   break;
                }
                case 6:   {
-                                  TA0CCR1 = TA0CCR1+100; //increments green led duty cycle
+                                  TA0CCR1 = TA0CCR1+100; //increments red led duty cycle
                                   btnCount++;
                                   break;
                }
                case 7:   {
-                                  TA0CCR1 = TA0CCR1+160; //increments green led duty cycle
+                                  TA0CCR1 = TA0CCR1+160; //increments red led duty cycle
                                   btnCount++;
                                   break;
                }
                case 8:   {
-                                  TA0CCR1 = TA0CCR1+220; //increments green led duty cycle
+                                  TA0CCR1 = TA0CCR1+220; //increments red led duty cycle
                                   btnCount++;
                                   break;
                }
                case 9:   {
-                                  TA0CCR1 = TA0CCR1+270; //increments green led duty cycle
+                                  TA0CCR1 = TA0CCR1+270; //increments red led duty cycle
                                   btnCount++;
                                   break;
                }

@@ -95,7 +95,7 @@ __interrupt void Port_5(void) {
                P1OUT^=BIT1; //toggle green led
 
                if (TA0CCR1<=1000){
-                   TA0CCR1 = TA0CCR1+100; //increments green led duty cycle
+                   TA0CCR1 = TA0CCR1+100; //increments red led duty cycle
 
                }
                else {

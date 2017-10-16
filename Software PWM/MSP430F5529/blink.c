@@ -89,7 +89,7 @@ __interrupt void Port_1(void) // function called when the port is interrupted (b
             P4OUT^=BIT7; //toggle green led
 
             if (TA0CCR1<=1000){
-                TA0CCR1 = TA0CCR1+100; //increments green led duty cycle
+                TA0CCR1 = TA0CCR1+100; //increments red led duty cycle
 
             }
             else {
