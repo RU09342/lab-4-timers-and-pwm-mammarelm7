@@ -1,5 +1,12 @@
 # Lab 4: Hardware PWM
 Similar to the Software PWM but uses the TA0CCTL1 = (OUTMOD_7) hardware and removed the timer isrs. The led setup for each of these boards is also different.
+Three functions are created to initialize the program.  
+ledSetup() initialized the leds, buttonSetup() initialized the button, and timerSetup() initialized the timer.
+In the timerSetup() the timer is set to use SMCLK in up mode with one control register set to OUTMOD_7 for reset/set. 
+The TA0CCR0 is set to be 1khz and the TA1CCR1 is set to be 500 so the duty cycle is 50%. 
+When the button is pressed, the button interrupt fires and the green led is toggled. 
+If the TA0CCR0 is less than or equal to 1000 then it is incremented by 100, otherwise it is set to 0. This changes the duty cycle for the red led. 
+
 
 ## Code Differences
 For each of the boards, different timers were used depending on availablity for each board. Input buttons and led pinouts were also different.
@@ -129,7 +136,7 @@ __interrupt void Port_1(void) // function called when the port is interrupted (b
             P4OUT^=BIT7; //toggle green led
 
             if (TA0CCR1<=1000){
-                TA0CCR1 = TA0CCR1+100; //increments green led duty cycle
+                TA0CCR1 = TA0CCR1+100; //increments red led duty cycle
 
             }
             else {
@@ -391,7 +398,7 @@ __interrupt void Port_5(void) {
                P1OUT^=BIT1; //toggle green led
 
                if (TA0CCR1<=1000){
-                   TA0CCR1 = TA0CCR1+100; //increments green led duty cycle
+                   TA0CCR1 = TA0CCR1+100; //increments red led duty cycle
 
                }
                else {
@@ -511,7 +518,7 @@ __interrupt void Port_1(void) {
         P9OUT^=BIT7; //toggle red led
 
         if (TA0CCR1<=1000){
-            TA0CCR1 = TA0CCR1+100; //increments green led duty cycle
+            TA0CCR1 = TA0CCR1+100; //increments red led duty cycle
 
         }
         else {
@@ -623,7 +630,7 @@ __interrupt void Port_1(void) {
         P1OUT^=BIT6; //toggle green led
 
         if (TA0CCR1<=1000){
-            TA0CCR1 = TA0CCR1+100; //increments green led duty cycle
+            TA0CCR1 = TA0CCR1+100; //increments red led duty cycle
 
         }
         else {
